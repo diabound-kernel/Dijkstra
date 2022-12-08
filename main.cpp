@@ -15,7 +15,7 @@ auto main() -> int {
     g.addEdge(3, 4, 3);
 
     std::array<int, 5> v{0, 1, 2, 3, 4};
-    auto d = dijkstra::shortPath(g, 0);
+    auto d = dijkstra::shortestPath(g, 0);
 
     for (const auto& [vertex, distance] : std::views::zip(v, d)) {
         std::cout << vertex << " " << distance << std::endl;
