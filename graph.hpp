@@ -15,7 +15,7 @@ struct graph
     graph() = default;
     ~graph() = default;
 
-    void addEdge(T fVertex, T tVertex, int cost)
+    void addEdge(const T& fVertex, const T& tVertex, int cost)
     {
         adjacencyList[fVertex].push_back(std::make_pair(tVertex, cost));
     }
@@ -31,7 +31,7 @@ struct graph
 struct dijkstra
 {
     template<typename Graph>
-    static auto shortPath(Graph graph, typename Graph::vertex_type startVertex)
+    static auto shortestPath(const Graph& graph, const typename Graph::vertex_type& startVertex)
     {
         const auto infinitive = std::numeric_limits<int>::max();
         std::vector<int> distance(graph.size(), infinitive);
