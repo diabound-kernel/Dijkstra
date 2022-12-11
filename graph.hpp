@@ -7,25 +7,26 @@
 #include <vector>
 #include <limits>
 
-template<typename T, std::size_t N>
+template<typename T, typename Cost, std::size_t N>
 struct graph
 {
     using vertex_type = T;
+    using cost_type = Cost;
 
     graph() = default;
     ~graph() = default;
 
-    void addEdge(const T& fVertex, const T& tVertex, int cost)
+    void addEdge(const T& fVertex, const T& tVertex, Cost cost)
     {
         adjacencyList[fVertex].push_back(std::make_pair(tVertex, cost));
     }
 
-    std::size_t size()
+    std::size_t size() const
     {
         return adjacencyList.size();
     }
 
-    std::array<std::list<std::pair<T, int>>, N> adjacencyList{};
+    std::array<std::list<std::pair<T, Cost>>, N> adjacencyList{};
 };
 
 struct dijkstra
@@ -33,12 +34,12 @@ struct dijkstra
     template<typename Graph>
     static auto shortestPath(const Graph& graph, const typename Graph::vertex_type& startVertex)
     {
-        const auto infinitive = std::numeric_limits<int>::max();
-        std::vector<int> distance(graph.size(), infinitive);
-        std::set<std::pair<typename Graph::vertex_type, int>> vertexQueue;
+        const auto infinitive = Graph::cost_type::max_value();
+        std::vector<typename Graph::cost_type> distance(graph.size(), infinitive);
+        std::set<std::pair<typename Graph::vertex_type, typename Graph::cost_type>> vertexQueue;
 
-        vertexQueue.insert(std::pair(startVertex, 0));
-        distance[startVertex] = 0;
+        vertexQueue.insert(std::pair(startVertex, typename Graph::cost_type()));
+        distance[startVertex] = typename Graph::cost_type();
 
         while (!vertexQueue.empty()) {
             auto currVertex = vertexQueue.begin()->first;
@@ -62,6 +63,5 @@ struct dijkstra
         return distance;
     }
 };
-
 
 #endif //DIJKSTRA_GRAPH_HPP
