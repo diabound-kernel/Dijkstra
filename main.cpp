@@ -10,6 +10,7 @@ std::ostream& operator<<(std::ostream& os, const NumericCost& numericCost)
     return os;
 }
 
+
 auto main() -> int {
 
     graph<int, NumericCost, 5> g;

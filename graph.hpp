@@ -64,4 +64,5 @@ struct dijkstra
     }
 };
 
+
 #endif //DIJKSTRA_GRAPH_HPP

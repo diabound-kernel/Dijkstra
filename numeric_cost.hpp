@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+
+
 struct NumericCost
 {
     static auto max_value()
