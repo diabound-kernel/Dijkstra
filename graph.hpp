@@ -2,21 +2,20 @@
 #define DIJKSTRA_GRAPH_HPP
 
 #include <array>
-#include <list>
 #include <set>
 #include <vector>
 #include <limits>
 
 template<typename T, typename Cost, std::size_t N>
-struct graph
+struct Graph
 {
     using vertex_type = T;
     using cost_type = Cost;
 
-    graph() = default;
-    ~graph() = default;
+    Graph() = default;
+    ~Graph() = default;
 
-    void addEdge(const T& fVertex, const T& tVertex, Cost cost)
+    void addEdge(const T& fVertex, const T& tVertex, const Cost& cost)
     {
         adjacencyList[fVertex].push_back(std::make_pair(tVertex, cost));
     }
@@ -26,10 +25,10 @@ struct graph
         return adjacencyList.size();
     }
 
-    std::array<std::list<std::pair<T, Cost>>, N> adjacencyList{};
+    std::array<std::vector<std::pair<T, Cost>>, N> adjacencyList{};
 };
 
-struct dijkstra
+struct Dijkstra
 {
     template<typename Graph>
     static auto shortestPath(const Graph& graph, const typename Graph::vertex_type& startVertex)
