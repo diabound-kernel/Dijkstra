@@ -10,22 +10,22 @@ struct NumericCost
         return NumericCost{std::numeric_limits<int>::max()};
     }
 
-    auto operator+(const NumericCost& other)
+    auto operator+(const NumericCost &other)
     {
         return NumericCost{cost + other.cost};
     }
 
-    auto operator>(const NumericCost& other)
+    auto operator>(const NumericCost &other)
     {
         return cost > other.cost;
     }
 
-    auto operator<(const NumericCost& other) const noexcept
+    auto operator<(const NumericCost &other) const noexcept
     {
         return cost < other.cost;
     }
 
-    auto operator!=(const NumericCost& other)
+    auto operator!=(const NumericCost &other)
     {
         return cost != other.cost;
     }
@@ -33,4 +33,4 @@ struct NumericCost
     int cost{};
 };
 
-#endif //DIJKSTRA_NUMERIC_COST_HPP
+#endif  // DIJKSTRA_NUMERIC_COST_HPP

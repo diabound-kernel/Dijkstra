@@ -1,17 +1,18 @@
-#include "range/v3/view/zip.hpp"
 #include "graph.hpp"
 #include "numeric_cost.hpp"
 
+#include "range/v3/view/zip.hpp"
+
 #include <iostream>
 
-std::ostream& operator<<(std::ostream& os, const NumericCost& numericCost)
+std::ostream &operator<<(std::ostream &os, const NumericCost &numericCost)
 {
     os << numericCost.cost;
     return os;
 }
 
-auto main() -> int {
-
+int main()
+{
     Graph<int, NumericCost, 5> graph;
 
     graph.addEdge(0, 1, NumericCost{4});
@@ -25,9 +26,8 @@ auto main() -> int {
 
     auto distances = Dijkstra::shortestPath(graph, 0);
 
-    for (const auto& [vertex, distance] :
-            ::ranges::views::zip(vertices, distances)) {
+    for (const auto &[vertex, distance] :
+         ::ranges::views::zip(vertices, distances)) {
         std::cout << vertex << " " << distance << std::endl;
     }
 }
-
