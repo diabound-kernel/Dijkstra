@@ -1,5 +1,4 @@
-#ifndef DIJKSTRA_GRAPH_HPP
-#define DIJKSTRA_GRAPH_HPP
+#pragma once
 
 #include <array>
 #include <limits>
@@ -31,7 +30,7 @@ struct Graph
 struct Dijkstra
 {
     template<typename Graph>
-    static auto shortestPath(
+    static std::vector<typename Graph::cost_type> shortestPath(
         const Graph &graph, const typename Graph::vertex_type &startVertex)
     {
         const auto infinitive = Graph::cost_type::max_value();
@@ -68,5 +67,3 @@ struct Dijkstra
         return distance;
     }
 };
-
-#endif  // DIJKSTRA_GRAPH_HPP

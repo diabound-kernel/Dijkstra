@@ -5,4 +5,4 @@ dijkstra : main.cpp
 	$(CXX) $? -I $(Dir) -o $@
 
 clean :
-		rm dijkstra
+	rm dijkstra

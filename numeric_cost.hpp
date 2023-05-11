@@ -1,36 +1,34 @@
-#ifndef DIJKSTRA_NUMERIC_COST_HPP
-#define DIJKSTRA_NUMERIC_COST_HPP
+#pragma once
 
 #include <iostream>
 
 struct NumericCost
 {
-    static auto max_value()
+    static NumericCost max_value()
     {
         return NumericCost{std::numeric_limits<int>::max()};
     }
 
-    auto operator+(const NumericCost &other)
+    friend NumericCost operator+(const NumericCost &lhs, const NumericCost &rhs)
     {
-        return NumericCost{cost + other.cost};
+        return NumericCost{lhs.cost + rhs.cost};
     }
 
-    auto operator>(const NumericCost &other)
+    friend bool operator>(const NumericCost &lhs, const NumericCost &rhs)
     {
-        return cost > other.cost;
+        return lhs.cost > rhs.cost;
     }
 
-    auto operator<(const NumericCost &other) const noexcept
+    friend bool
+    operator<(const NumericCost &lhs, const NumericCost &rhs) noexcept
     {
-        return cost < other.cost;
+        return lhs.cost < rhs.cost;
     }
 
-    auto operator!=(const NumericCost &other)
+    friend bool operator!=(const NumericCost &lhs, const NumericCost &rhs)
     {
-        return cost != other.cost;
+        return lhs.cost != rhs.cost;
     }
 
     int cost{};
 };
-
-#endif  // DIJKSTRA_NUMERIC_COST_HPP
