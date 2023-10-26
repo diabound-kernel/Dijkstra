@@ -1,5 +1,5 @@
-#include "graph.hpp"
-#include "numeric_cost.hpp"
+#include "graph/graph.hpp"
+#include "graph/numeric_cost.hpp"
 
 #include "range/v3/view/zip.hpp"
 
